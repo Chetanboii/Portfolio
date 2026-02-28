@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chetan H D | Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #4ade80;
+      --secondary-color: #22c55e;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      background: #0f172a;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      margin: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Liquid Background Blobs */
+    .blob-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      filter: blur(80px);
+    }
+
+    .blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: move 20s infinite alternate;
+    }
+
+    .blob-1 {
+      top: -10%;
+      left: -10%;
+      background: #4cc9f0;
+      animation-duration: 25s;
+    }
+
+    .blob-2 {
+      bottom: -10%;
+      right: -10%;
+      background: #f72585;
+      animation-duration: 30s;
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      top: 40%;
+      left: 30%;
+      width: 300px;
+      height: 300px;
+      background: #4361ee;
+      animation-duration: 20s;
+      animation-delay: -10s;
+    }
+
+    @keyframes move {
+      from {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+
+      to {
+        transform: translate(100px, 100px) scale(1.2) rotate(360deg);
+      }
+    }
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-radius: 24px;
+      padding: 35px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Liquid shine effect on glass */
+    .glass::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .glass:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    .profile-container {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      display: inline-block;
+      margin-bottom: 20px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-container:hover {
+      box-shadow: 0 0 35px rgba(76, 201, 240, 0.5);
+      border-color: #fff;
+      transform: scale(1.05);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.3);
+      filter: brightness(1.1);
+      transition: transform 0.5s ease;
+    }
+
+    .profile-container:hover .profile-img {
+      transform: scale(1.4);
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #fff, var(--primary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a:not(.navbar-brand) {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 15px;
+      display: inline-block;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:not(.navbar-brand)::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    nav a:not(.navbar-brand):hover {
+      color: #fff;
+    }
+
+    nav a:not(.navbar-brand):hover::after {
+      width: 100%;
+    }
+
+    .hd-logo {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #fff, #4cc9f0, #4361ee, #f72585, #4cc9f0, #fff);
+      background-size: 300% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hd-highlight {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 300% center;
+      }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-8px);
+      background: var(--primary-color);
+      box-shadow: 0 15px 40px rgba(74, 222, 128, 0.4);
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 20px;
+      padding-left: 30px;
+      position: relative;
+      font-size: 1.1rem;
+    }
+
+    ul li::before {
+      content: "\F285";
+      font-family: "bootstrap-icons";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 15px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Liquid Background Blobs -->
+  <div class="blob-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold hd-logo">
+        <span class="hd-highlight">HD</span> Portfolio
+      </a>
+      <div class="d-none d-lg-block">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#internship">Internship</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="container glass text-center mt-5 py-5">
+    <div class="profile-container">
+      <img src="dp.jpeg" class="profile-img" alt="Profile" />
+    </div>
+    <h1 class="fw-bold mt-3 display-4">Chetan H D</h1>
+    <h4 class="text-info opacity-75">Full-Stack Web Developer</h4>
+    <p class="mt-3 fs-5 text-light">MCA Student — KLE Technological University</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container glass mt-5">
+    <h2 class="section-title">About Me</h2>
+    <p class="fs-5 lh-base">
+      I am a focused, sincere, and hardworking professional committed to
+      delivering excellence in every task. I believe in continuous learning,
+      responsibility, and consistent improvement. I enjoy working on creative
+      projects and contributing meaningfully to organizational success.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container glass mt-5">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-3 rounded-4 border border-white border-opacity-10 h-100">
+          <h4 class="fw-bold text-info mb-3"><i class="bi bi-code-slash me-2"></i>Technical Skills</h4>
+          <p class="fs-5">HTML, CSS, Tailwind CSS, React, MS Word</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 rounded-4 border border-white border-opacity-10 h-100">
+          <h4 class="fw-bold text-info mb-3"><i class="bi bi-person-gear me-2"></i>Soft Skills</h4>
+          <p class="fs-5">
+            Team Collaboration • Problem Solving • Time Management • Attention to
+            Detail • Creativity • Communication
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 p-3 rounded-4 border border-white border-opacity-10">
+      <h4 class="fw-bold text-info mb-3"><i class="bi bi-translate me-2"></i>Languages</h4>
+      <p class="fs-5">English • Hindi • Kannada</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container glass mt-5">
+    <h2 class="section-title">Education</h2>
+    <ul>
+      <li>
+        <strong class="text-info fs-5">10th</strong> — Nagarale Public School, Vijayapura
+        <div class="mt-2 text-success"><span class="badge">Aggregate: 89%</span></div>
+      </li>
+      <li>
+        <strong class="text-info fs-5">PUC</strong> — Chetana PU college, Vijayapura
+        <div class="mt-2 text-success">
+          <span class="badge me-2">1st PUC: 96%</span>
+          <span class="badge">2nd PUC: 81%</span>
+        </div>
+      </li>
+      <li>
+        <strong class="text-info fs-5">BCA</strong> — A.S.Patil College of Commerce, Vijayapura
+        <div class="mt-2 text-info"><span class="badge">CGPA: 8.76</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- INTERNSHIP -->
+  <section id="internship" class="container glass mt-5">
+    <h2 class="section-title">Internship</h2>
+    <div class="p-4 rounded-4 border border-white border-opacity-10">
+      <h4 class="text-info fw-bold mb-1">Magnum Solutions</h4>
+      <p class="text-light opacity-50 mb-3"><i class="bi bi-calendar-event me-2"></i>Oct 02, 2024 – Dec 02, 2024</p>
+      <p class="fs-5">
+        Gained hands-on experience in IoT-based system architectures and hardware interfacing.
+        Focused on sensor data acquisition, cloud connectivity, and building smart automation
+        prototypes with a strong emphasis on real-time data monitoring and device control.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container glass mt-5 mb-5 text-center">
+    <h2 class="section-title">Contact</h2>
+    <div class="row justify-content-center g-4 mt-2">
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center p-3 rounded-4 border border-white border-opacity-10 h-100">
+          <i class="bi bi-envelope-at-fill text-info fs-1 mb-3"></i>
+          <div class="text-light opacity-50 small">Email</div>
+          <div class="fw-bold">chetanhd4@gmail.com</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center p-3 rounded-4 border border-white border-opacity-10 h-100">
+          <i class="bi bi-telephone-outbound-fill text-info fs-1 mb-3"></i>
+          <div class="text-light opacity-50 small">Phone</div>
+          <div class="fw-bold">7975210019</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-flex flex-column align-items-center p-3 rounded-4 border border-white border-opacity-10 h-100">
+          <i class="bi bi-geo-alt-fill text-info fs-1 mb-3"></i>
+          <div class="text-light opacity-50 small">Location</div>
+          <div class="fw-bold">Hubli, Karnataka</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP BUTTON -->
+  <a href="#home" class="back-to-top" aria-label="Back to Top">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+</body>
+
+</html>
